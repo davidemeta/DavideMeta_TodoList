@@ -1,4 +1,4 @@
-#include <iostream>
+#include <wx/wx.h>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -87,6 +87,11 @@ public:
 
 private:
     std::vector<Attivita> attivitaList;
+};
+
+class MyApp : public wxApp {
+public:
+    virtual bool OnInit();
 };
 
 int main() {

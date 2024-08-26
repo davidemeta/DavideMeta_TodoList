@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.28)
 project(TodoList)
 
-set(CMAKE_CXX_STANDARD 17)
+# Find and include wxWidgets
+find_package(wxWidgets REQUIRED COMPONENTS core base)
+include(${wxWidgets_USE_FILE})
 
+# Add the main project executable
 add_executable(TodoList main.cpp)
+
+# Link wxWidgets libraries to the main executable
+target_link_libraries(TodoList ${wxWidgets_LIBRARIES})
