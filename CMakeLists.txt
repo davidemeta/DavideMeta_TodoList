@@ -7,7 +7,8 @@ include(${wxWidgets_USE_FILE})
 
 # Add the main project executable
 add_executable(TodoList main.cpp
-        Attivita.h)
+        Attivita.h
+        TodoList.h)
 
 # Link wxWidgets libraries to the main executable
 target_link_libraries(TodoList ${wxWidgets_LIBRARIES})
