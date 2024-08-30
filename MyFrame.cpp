@@ -17,14 +17,14 @@ MyFrame::MyFrame(const wxString &title)
 
     // Create the "Aggiungi" button and set its initial color to green
     wxButton *addButton = new wxButton(panel, ID_Add, wxT("Aggiungi"));
-    addButton->SetBackgroundColour(*wxGREEN);
-    addButton->SetForegroundColour(*wxWHITE);
+    addButton->SetBackgroundColour(wxColour(0, 128, 0));;
+    addButton->SetForegroundColour(wxColour(255, 255, 255));
     hbox1->Add(addButton, 0);
 
     // Create the "Rimuovi" button and set its initial color to red
     wxButton *removeButton = new wxButton(panel, ID_Remove, wxT("Rimuovi"));
-    removeButton->SetBackgroundColour(*wxRED);
-    removeButton->SetForegroundColour(*wxWHITE);
+    removeButton->SetBackgroundColour(wxColour(128, 0, 0)); // Darker red
+    removeButton->SetForegroundColour(wxColour(255, 255, 255)); // White text
     hbox1->Add(removeButton, 0, wxLEFT | wxBOTTOM, 5);
 
     vbox->Add(hbox1, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 10);
@@ -62,23 +62,26 @@ MyFrame::MyFrame(const wxString &title)
 void MyFrame::OnButtonHoverEnter(wxMouseEvent &event) {
     wxButton *button = dynamic_cast<wxButton *>(event.GetEventObject());
     if (button) {
+        // Change background and text color when hovered
         if (button->GetLabel() == "Aggiungi") {
-            button->SetBackgroundColour(wxColour(0, 200, 0)); // Darker green
+            button->SetBackgroundColour(wxColour(0, 128, 0)); // Darker green
+            button->SetForegroundColour(wxColour(255, 255, 255)); // White text
         } else if (button->GetLabel() == "Rimuovi") {
-            button->SetBackgroundColour(wxColour(200, 0, 0)); // Darker red
+            button->SetBackgroundColour(wxColour(128, 0, 0)); // Darker red
+            button->SetForegroundColour(wxColour(255, 255, 255)); // White text
         }
+        // Apply changes
+        button->Refresh();
+        button->Update();
     }
-    event.Skip();
+    event.Skip(); // Ensure the event is passed on to other handlers
 }
 
 void MyFrame::OnButtonHoverLeave(wxMouseEvent &event) {
     wxButton *button = dynamic_cast<wxButton *>(event.GetEventObject());
     if (button) {
-        if (button->GetLabel() == "Aggiungi") {
-            button->SetBackgroundColour(*wxGREEN); // Original green
-        } else if (button->GetLabel() == "Rimuovi") {
-            button->SetBackgroundColour(*wxRED); // Original red
-        }
+        // Reset the button's background color to the default system color
+        button->SetBackgroundColour(wxNullColour);
     }
     event.Skip();
 }
