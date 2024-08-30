@@ -12,6 +12,10 @@ public:
     MyFrame(const wxString &title);
 
 private:
+    void OnButtonHoverEnter(wxMouseEvent &event);
+
+    void OnButtonHoverLeave(wxMouseEvent &event);
+
     void OnAdd(wxCommandEvent &event);
 
     void OnRemove(wxCommandEvent &event);

@@ -14,22 +14,38 @@ MyFrame::MyFrame(const wxString &title)
     vbox->Add(listBox, 1, wxEXPAND | wxALL, 10);
 
     wxBoxSizer *hbox1 = new wxBoxSizer(wxHORIZONTAL);
+
+    // Create the "Aggiungi" button and set its initial color to green
     wxButton *addButton = new wxButton(panel, ID_Add, wxT("Aggiungi"));
+    addButton->SetBackgroundColour(*wxGREEN);
+    addButton->SetForegroundColour(*wxWHITE);
     hbox1->Add(addButton, 0);
+
+    // Create the "Rimuovi" button and set its initial color to red
     wxButton *removeButton = new wxButton(panel, ID_Remove, wxT("Rimuovi"));
+    removeButton->SetBackgroundColour(*wxRED);
+    removeButton->SetForegroundColour(*wxWHITE);
     hbox1->Add(removeButton, 0, wxLEFT | wxBOTTOM, 5);
 
     vbox->Add(hbox1, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 10);
 
     wxBoxSizer *hbox2 = new wxBoxSizer(wxHORIZONTAL);
+
     wxButton *saveButton = new wxButton(panel, ID_Save, wxT("Salva"));
     hbox2->Add(saveButton, 0);
+
     wxButton *loadButton = new wxButton(panel, ID_Load, wxT("Carica"));
     hbox2->Add(loadButton, 0, wxLEFT | wxBOTTOM, 5);
 
     vbox->Add(hbox2, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 10);
 
     panel->SetSizer(vbox);
+
+    // Bind events for hover effects
+    addButton->Bind(wxEVT_ENTER_WINDOW, &MyFrame::OnButtonHoverEnter, this);
+    addButton->Bind(wxEVT_LEAVE_WINDOW, &MyFrame::OnButtonHoverLeave, this);
+    removeButton->Bind(wxEVT_ENTER_WINDOW, &MyFrame::OnButtonHoverEnter, this);
+    removeButton->Bind(wxEVT_LEAVE_WINDOW, &MyFrame::OnButtonHoverLeave, this);
 
     Connect(ID_Add, wxEVT_COMMAND_BUTTON_CLICKED,
             wxCommandEventHandler(MyFrame::OnAdd));
@@ -41,6 +57,30 @@ MyFrame::MyFrame(const wxString &title)
             wxCommandEventHandler(MyFrame::OnLoad));
 
     Centre();
+}
+
+void MyFrame::OnButtonHoverEnter(wxMouseEvent &event) {
+    wxButton *button = dynamic_cast<wxButton *>(event.GetEventObject());
+    if (button) {
+        if (button->GetLabel() == "Aggiungi") {
+            button->SetBackgroundColour(wxColour(0, 200, 0)); // Darker green
+        } else if (button->GetLabel() == "Rimuovi") {
+            button->SetBackgroundColour(wxColour(200, 0, 0)); // Darker red
+        }
+    }
+    event.Skip();
+}
+
+void MyFrame::OnButtonHoverLeave(wxMouseEvent &event) {
+    wxButton *button = dynamic_cast<wxButton *>(event.GetEventObject());
+    if (button) {
+        if (button->GetLabel() == "Aggiungi") {
+            button->SetBackgroundColour(*wxGREEN); // Original green
+        } else if (button->GetLabel() == "Rimuovi") {
+            button->SetBackgroundColour(*wxRED); // Original red
+        }
+    }
+    event.Skip();
 }
 
 void MyFrame::OnAdd(wxCommandEvent &event) {
