@@ -14,17 +14,17 @@ MyFrame::MyFrame(const wxString &title)
     vbox->Add(listBox, 1, wxEXPAND | wxALL, 10);
 
     wxBoxSizer *hbox1 = new wxBoxSizer(wxHORIZONTAL);
-    wxButton *addButton = new wxButton(panel, ID_Add, wxT("Aggiungi"));
+    wxButton *addButton = new wxButton(panel, ID_Add, wxT("Add"));
     hbox1->Add(addButton, 0);
-    wxButton *removeButton = new wxButton(panel, ID_Remove, wxT("Rimuovi"));
+    wxButton *removeButton = new wxButton(panel, ID_Remove, wxT("Remove"));
     hbox1->Add(removeButton, 0, wxLEFT | wxBOTTOM, 5);
 
     vbox->Add(hbox1, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 10);
 
     wxBoxSizer *hbox2 = new wxBoxSizer(wxHORIZONTAL);
-    wxButton *saveButton = new wxButton(panel, ID_Save, wxT("Salva"));
+    wxButton *saveButton = new wxButton(panel, ID_Save, wxT("Save"));
     hbox2->Add(saveButton, 0);
-    wxButton *loadButton = new wxButton(panel, ID_Load, wxT("Carica"));
+    wxButton *loadButton = new wxButton(panel, ID_Load, wxT("Upload"));
     hbox2->Add(loadButton, 0, wxLEFT | wxBOTTOM, 5);
 
     vbox->Add(hbox2, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 10);
