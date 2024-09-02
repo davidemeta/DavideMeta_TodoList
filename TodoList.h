@@ -21,7 +21,6 @@ public:
         }
     }
 
-    //sostituire std::vector<Attivita> con auto
     std::vector<Attivita> getAttivita() const {
         return attivitaList;
     }
