@@ -24,7 +24,7 @@ MyFrame::MyFrame(const wxString &title)
     wxBoxSizer *hbox2 = new wxBoxSizer(wxHORIZONTAL);
     wxButton *saveButton = new wxButton(panel, ID_Save, wxT("Save"));
     hbox2->Add(saveButton, 0);
-    wxButton *loadButton = new wxButton(panel, ID_Load, wxT("Upload"));
+    wxButton *loadButton = new wxButton(panel, ID_Load, wxT("Load"));
     hbox2->Add(loadButton, 0, wxLEFT | wxBOTTOM, 5);
 
     vbox->Add(hbox2, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 10);
