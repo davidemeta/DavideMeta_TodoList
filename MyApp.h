@@ -11,11 +11,4 @@ public:
     virtual bool OnInit();
 };
 
-enum {
-    ID_Add = 1,
-    ID_Remove = 2,
-    ID_Save = 3,
-    ID_Load = 4
-};
-
 #endif //MYAPP_H
