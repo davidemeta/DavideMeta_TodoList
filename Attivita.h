@@ -4,46 +4,40 @@
 
 #ifndef ATTIVITA_H
 #define ATTIVITA_H
+
 #include <string>
-#include <sstream>
 
 class Attivita {
 public:
-    Attivita(const std::string &descrizione, bool completata = false)
-        : descrizione(descrizione), completata(completata) {
-    }
+    Attivita(const std::string &descrizione, bool completato = false)
+        : descrizione(descrizione), completato(completato) {}
 
     std::string getDescrizione() const {
         return descrizione;
     }
 
-    bool isCompletata() const {
-        return completata;
+    bool isCompletato() const {
+        return completato;
     }
 
-    void setCompletata(bool completata) {
-        this->completata = completata;
+    void setCompletato(bool completato) {
+        this->completato = completato;
     }
 
     std::string toString() const {
-        std::stringstream ss;
-        ss << descrizione << "," << completata;
-        return ss.str();
+        return descrizione + "|" + (completato ? "1" : "0");
     }
 
     static Attivita fromString(const std::string &str) {
-        std::stringstream ss(str);
-        std::string descrizione;
-        std::string completataStr;
-        std::getline(ss, descrizione, ',');
-        std::getline(ss, completataStr);
-        bool completata = (completataStr == "1");
-        return Attivita(descrizione, completata);
+        size_t pos = str.find('|');
+        std::string descrizione = str.substr(0, pos);
+        bool completato = (str.substr(pos + 1) == "1");
+        return Attivita(descrizione, completato);
     }
 
 private:
     std::string descrizione;
-    bool completata;
+    bool completato;
 };
 
-#endif //ATTIVITA_H
+#endif // ATTIVITA_H
