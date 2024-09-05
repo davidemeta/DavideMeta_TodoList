@@ -28,7 +28,7 @@ public:
     void salvaSuDisco(const std::string &filename) const {
         std::ofstream file(filename);
         if (file.is_open()) {
-            for (const auto &attivita: attivitaList) {
+            for (const auto &attivita : attivitaList) {
                 file << attivita.toString() << std::endl;
             }
             file.close();
@@ -51,8 +51,30 @@ public:
         }
     }
 
+    // Method that counts how many activities are left
+    int countRemainingActivities() const {
+        int count = 0;
+        for (const auto &attivita : attivitaList) {
+            if (!attivita.isCompletato()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // Method to search for activities by name
+    std::vector<Attivita> cercaAttivita(const std::string &nome) const {
+        std::vector<Attivita> risultati;
+        for (const auto &attivita : attivitaList) {
+            if (attivita.getDescrizione().find(nome) != std::string::npos) {
+                risultati.push_back(attivita);
+            }
+        }
+        return risultati;
+    }
+
 private:
     std::vector<Attivita> attivitaList;
 };
 
-#endif //TODOLIST_H
+#endif // TODOLIST_H
